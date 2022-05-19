@@ -3,3 +3,4 @@ pandas-datareader==0.10.0
 statsmodels==0.13.2
 pmdarima==1.8.5
 sklearn==0.0
+streamlit==0.68.1
