@@ -108,7 +108,24 @@ def decomposeSeries(timeseries, mode):
     fig = result.plot()
     fig.set_size_inches(12,9)
     sp.pyplot(fig)
+    
+#convert the statsmodel into a dataframe
+def results_summary_to_dataframe(results):
+    '''take the result of an statsmodel results table and transforms it into a dataframe'''
+    pvals = results.pvalues
+    coeff = results.params
+    conf_lower = results.conf_int()[0]
+    conf_higher = results.conf_int()[1]
 
+    results_df = pd.DataFrame({"pvals":pvals,
+                               "coeff":coeff,
+                               "conf_lower":conf_lower,
+                               "conf_higher":conf_higher
+                                })
+
+    #Reordering...
+    results_df = results_df[["coeff","pvals","conf_lower","conf_higher"]]
+    return results_df
     
 df_Close = df['Close']
 
@@ -172,7 +189,7 @@ model_autoARIMA = auto_arima(train, start_p=0, start_q=0,
                              stepwise=True )
 sp.markdown('#')
 sp.subheader('A glimpse at the model')
-sp.markdown(model_autoARIMA.summary())
+sp.table(results_summary_to_dataframe(model_autoARIMA.summary()))
 fig = model_autoARIMA.plot_diagnostics(figsize=(15,8))
 sp.pyplot(fig)
 
