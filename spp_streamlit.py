@@ -189,7 +189,7 @@ model_autoARIMA = auto_arima(train, start_p=0, start_q=0,
                              stepwise=True )
 sp.markdown('#')
 sp.subheader('A glimpse at the model')
-sp.table(results_summary_to_dataframe(model_autoARIMA.summary()))
+#sp.table(results_summary_to_dataframe(model_autoARIMA.summary()))
 fig = model_autoARIMA.plot_diagnostics(figsize=(15,8))
 sp.pyplot(fig)
 
@@ -200,6 +200,7 @@ import statsmodels.api as sm
 model = sm.tsa.arima.ARIMA(train, 
                            order=model_autoARIMA.order)
 res_arima = model.fit()
+sp.table(results_summary_to_dataframe(res_arima))
 sp.write('')
 fig = plt.figure(figsize=(10,6))
 plt.title('Model fit using training data')
