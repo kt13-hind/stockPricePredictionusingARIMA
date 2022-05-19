@@ -211,7 +211,7 @@ sp.pyplot(fig)
 #forcast
 predicted_arima_diff = pd.Series(res_arima.fittedvalues, copy=True)
 print(predicted_arima_diff.head())
-sp.write('Now the model forcasts for the training data')
+#sp.write('Now the model forcasts for the training data')
 fc = res_arima.forecast(steps=len(test))
 predicted_arima_diff = predicted_arima_diff.append(fc)
 
