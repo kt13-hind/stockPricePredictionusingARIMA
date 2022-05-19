@@ -192,7 +192,7 @@ sp.markdown('#')
 sp.subheader('A glimpse at the model')
 #sp.table(results_summary_to_dataframe(model_autoARIMA.summary()))
 model_summary = model_autoARIMA.summary()
-sp.write(model_summary)
+sp.markdown(model_summary)
 fig = model_autoARIMA.plot_diagnostics(figsize=(15,8))
 sp.pyplot(fig)
 
