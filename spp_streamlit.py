@@ -110,7 +110,7 @@ def decomposeSeries(timeseries, mode):
     fig.set_size_inches(12,9)
     sp.pyplot(fig)
     
-convert the statsmodel into a dataframe
+#convert the statsmodel into a dataframe
 def results_summary_to_dataframe(results):
     '''take the result of an statsmodel results table and transforms it into a dataframe'''
     pvals = results.pvalues
