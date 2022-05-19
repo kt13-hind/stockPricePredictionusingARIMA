@@ -31,7 +31,6 @@ The concepts used in this project are
 - Decomposition of timeseries
 - Make the time series stationary
 - ARIMA 
-- Forecast
 """
 )
 import datetime
@@ -173,7 +172,7 @@ model_autoARIMA = auto_arima(train, start_p=0, start_q=0,
                              stepwise=True )
 sp.markdown('#')
 sp.subheader('A glimpse at the model')
-sp.write(model_autoARIMA.summary())
+sp.table(model_autoARIMA.summary())
 fig = model_autoARIMA.plot_diagnostics(figsize=(15,8))
 sp.pyplot(fig)
 
