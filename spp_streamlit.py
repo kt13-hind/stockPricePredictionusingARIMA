@@ -123,7 +123,29 @@ def results_summary_to_dataframe(results):
                                "conf_lower":conf_lower,
                                "conf_higher":conf_higher
                                 })
+def reform_df(dft):
+    # quick and dirty stacking of cols 2,3 on 0,1
+    dfl = dft[[0,1]]
+    dfr = dft[[2,3]]
+    dfr.columns = 0,1
+    dfout = pd.concat([dfl,dfr])
+    dfout.columns=['Parameter','Value']
+    return dfout
 
+def model_summary_to_dataframe(model):
+    # first the middle table      
+    results_df = pd.DataFrame(model.summary().tables[1])
+    results_df = results_df.set_index(0)
+    results_df.columns = results_df.iloc[0]
+    results_df = results_df.iloc[1:]
+    results_df.index.name='Parameter'
+
+    # now for the surrounding information
+    metrics_top = reform_df(pd.DataFrame(model.summary().tables[0]))
+    metrics_bot = reform_df(pd.DataFrame(model.summary().tables[2]))
+    metrics_df = pd.concat([metrics_top,metrics_bot])
+
+    return pd.DataFrame(results_df),metrics_df
     #Reordering...
     results_df = results_df[["coeff","pvals","conf_lower","conf_higher"]]
     return results_df
@@ -203,7 +225,7 @@ import statsmodels.api as sm
 model = sm.tsa.arima.ARIMA(train, 
                            order=model_autoARIMA.order)
 res_arima = model.fit()
-#sp.table(results_summary_to_dataframe(res_arima))
+#sp.table(model_summary_to_dataframe(res_arima))
 sp.write('')
 fig = plt.figure(figsize=(10,6))
 plt.title('Model fit using training data')
