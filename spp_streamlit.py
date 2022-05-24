@@ -159,7 +159,7 @@ decomposeSeries(log_minus_moving_av, 'additive')
 #now lets develop the arima model
 #split data into training and testing
 sp.markdown('#')
-train, test = log_minus_moving_av[:int(len(log_minus_moving_av)*0.98)], log_minus_moving_av[int(len(log_minus_moving_av)*0.98):]
+train, test = log_minus_moving_av[:int(len(log_minus_moving_av)*0.95)], log_minus_moving_av[int(len(log_minus_moving_av)*0.95):]
 sp.subheader('Training and Testing data')
 fig = plt.figure(figsize=(10,6))
 plt.title('Training and testing data')
