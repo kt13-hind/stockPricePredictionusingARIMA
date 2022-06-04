@@ -202,8 +202,9 @@ res_arima = model.fit()
 sp.write('')
 fig = plt.figure(figsize=(10,6))
 plt.title('Model fit using training data')
-plt.plot(log_minus_moving_av)
-plt.plot(res_arima.fittedvalues)
+plt.plot(log_minus_moving_av, label='Original log minus moving average')
+plt.plot(res_arima.fittedvalues, label='Model fitted values')
+plt.legend(loc='best')
 sp.pyplot(fig)
 
 #forcast
