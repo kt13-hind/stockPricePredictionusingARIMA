@@ -257,7 +257,7 @@ sp.text('Mean Squared Error: '+str(mse))
 mae = mean_absolute_error(test, fc)
 sp.text('Mean Absolute Error: '+str(mae))
 rmse = math.sqrt(mean_squared_error(test, fc))
-sp.text('Mean Squared Error: '+str(rmse))
+sp.text('Root Mean Squared Error: '+str(rmse))
 mape = np.mean(np.abs(fc - test)/np.abs(test))
 sp.text('Mean Absolute Percentage Error: '+str(mape))
 #with mape of around 0.95% the model is 99.05% accurate in predicting next 15 observations
